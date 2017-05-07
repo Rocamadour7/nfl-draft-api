@@ -18,7 +18,7 @@ class CreateDraftDetailsTable extends Migration
             $table->unsignedInteger('draftRound');
             $table->unsignedInteger('round');
             $table->foreign('round')->references('id')->on('rounds');
-            $table->unsignedInteger('player_id');
+            $table->unsignedInteger('player_id')->unique();
             $table->foreign('player_id')->references('id')->on('players');
             $table->unsignedInteger('team_id');
             $table->foreign('team_id')->references('id')->on('teams');

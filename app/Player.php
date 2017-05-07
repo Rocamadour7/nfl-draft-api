@@ -23,11 +23,11 @@ class Player extends Model
 
     public function teams()
     {
-        return $this->belongsToMany('App\Team', 'draft_details');
+        return $this->belongsToMany('App\Team', 'draft_details', 'player_id', 'team_id')->withPivot('draftOverall', 'draftRound', 'round');
     }
 
     public function rounds()
     {
-        return $this->belongsToMany('App\Round', 'draft_details');
+        return $this->belongsToMany('App\Round', 'draft_details', 'player_id', 'round')->withPivot('draftOverall', 'draftRound', 'team_id');
     }
 }
