@@ -15,3 +15,5 @@ use Illuminate\Http\Request;
 
 Route::get('player/{id}', 'PlayersController@getPlayer');
 Route::get('players', 'PlayersController@getPlayers');
+Route::get('colleges', 'CollegesController@getColleges');
+Route::get('positions', 'PositionsController@getPositions');
