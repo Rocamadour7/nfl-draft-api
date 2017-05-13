@@ -16,7 +16,7 @@ class PlayersController extends Controller
 
     public function getPlayers()
     {
-        $players = Player::with('college', 'position')->get();
+        $players = Player::with('college.conference', 'position', 'tests', 'teams')->get();
         $response = ['players' => $players];
         return response()->json($response, 200);
     }
