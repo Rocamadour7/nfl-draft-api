@@ -9,15 +9,35 @@ class PlayersController extends Controller
 {
     public function getPlayer($id)
     {
-        $player = Player::with('college.conference', 'position', 'tests', 'teams.rounds')->find($id);
-        $response = ['player' => $player];
-        return response()->json($response, 200);
+        try
+        {
+            $player = Player::with('college.conference', 'position', 'tests', 'teams')->find($id);
+            if(!$player)
+            {
+                return response()->json(['message' => 'Player not found'], 404);
+            } else {
+                $response = ['player' => $player];
+                return response()->json($response, 200);
+            }
+        }
+        catch(\Exception $e)
+        {
+            return response(['message' => 'Something went wrong on our side.'], 500);
+        }
     }
 
     public function getPlayers()
     {
-        $players = Player::with('college.conference', 'position', 'tests', 'teams')->get();
-        $response = ['players' => $players];
-        return response()->json($response, 200);
+        
+        try
+        {
+            $players = Player::with('college.conference', 'position', 'tests', 'teams')->get();
+            $response = ['players' => $players];
+            return response()->json($response, 200);
+        }
+        catch(\Exception $e)
+        {
+            return response(['message' => 'Something went wrong on our side.'], 500);
+        }
     }
 }

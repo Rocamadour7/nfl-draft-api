@@ -19,6 +19,7 @@ class CreatePlayersTestsTable extends Migration
             $table->foreign('player_id')->references('id')->on('players');
             $table->unsignedInteger('test_id');
             $table->foreign('test_id')->references('id')->on('tests');
+            $table->float('result', 5, 2);
         });
     }
 

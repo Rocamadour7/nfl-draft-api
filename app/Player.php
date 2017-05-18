@@ -18,7 +18,7 @@ class Player extends Model
 
     public function tests()
     {
-        return $this->belongsToMany('App\Test');
+        return $this->belongsToMany('App\Test')->withPivot('result');
     }
 
     public function teams()

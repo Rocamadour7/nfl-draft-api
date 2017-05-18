@@ -9,8 +9,15 @@ class TeamsController extends Controller
 {
     public function getTeams()
     {
-        $teams = Team::all();
-        $response = ['teams' => $teams];
-        return response()->json($response, 200);
+        try
+        {
+            $teams = Team::all();
+            $response = ['teams' => $teams];
+            return response()->json($response, 200);
+        }
+        catch(\Exception $e)
+        {
+            return response(['message' => 'Something went wrong on our side.'], 500);
+        }
     }
 }
